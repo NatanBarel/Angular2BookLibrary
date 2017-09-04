@@ -1,0 +1,103 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h1> {{pageTitle}}</h1>
+    </div>
+
+    <!--Filter the Boooks-->
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-2">Filter By:</div>
+            <div class="col-md-4">
+                <input type="text" [(ngModel)]='listFilter'>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3> Filter By: {{listFilter}}</h3>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table-striped" *ngIf=' books && books.length'>
+                <thead>
+                    <tr class="row">
+                        <th>Book Image</th>
+                        <th>Book Title</th>
+                        <th>Author</th>
+                        <th>Date of Published</th>
+                        <th>Edit Book
+                            <th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let book of books | bookFilter:listFilter' class="row">
+                        <td>
+                            <img [src]='book.imageUrl' [title]='book.bookTitle' [style.width.px]='imageWidth' [style.margin.px]='imageMargin'>
+                        </td>
+                        <td>
+                            <a [routerLink]="['/book', book.bookId]"> {{book.bookTitle | bookTitleFilter}}</a>
+                        </td>
+                        <td>{{book.author}}</td>
+                        <td>{{book.datePublished|date:'MM/yyyy'}}</td>
+                        <td>
+                            <button class='btn btn-primary ' (click)='openModal(template)'>
+                            <i class="glyphicon glyphicon-edit"></i>
+                            Edit    
+                            </button>
+                            <ng-template #template>
+                                <div class="modal-header">
+                                    <h4 class="modal-title pull-left">Modal</h4>
+                                    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h1>Book Edit</h1>
+                                    {{diagnostic}}
+                                    <form (ngSubmit)="onSubmit()" #bookForm="ngForm">
+                                        <div class="form-group">
+                                            <input type="hidden" class="form-control" id="bookId" name="bookId" [(ngModel)]="book.bookId">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="title">Book Title</label>
+                                            <input type="text" class="form-control" id="bookTitle" name="bookTitle" [(ngModel)]="book.bookTitle" #bookT="ngModel" required>
+                                            <div *ngIf="bookT.invalid" class="alert alert-danger">
+                                                <div *ngIf="bookT.errors.required">
+                                                    Book Title is required.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="author">Author</label>
+                                            <input type="text" class="form-control" id="author" name="author" [(ngModel)]="book.author" #bookA="ngModel" required>
+                                            <div *ngIf="bookA.invalid" class="alert alert-danger">
+                                                <div *ngIf="bookA.errors.required">
+                                                    Book Author is invalid.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="date">Date</label>
+                                            <input type="date" class="form-control" id="datePublished" name="datePublished" [(ngModel)]="book.datePublished" #bookD="ngModel" required>
+                                            <div *ngIf="bookD.invalid" class="alert alert-danger">
+                                                <div *ngIf="bookD.errors.required">
+                                                    Book Published Date is invalid.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-success" [disabled]="!bookForm.form.valid">Submit</button>
+
+                                    </form>
+                                </div>
+                            </ng-template>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>

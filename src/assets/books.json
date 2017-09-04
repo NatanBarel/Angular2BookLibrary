@@ -1,0 +1,36 @@
+[{
+        "bookId": 1,
+        "bookTitle": "@@@i Am Watching You ",
+        "author": "Teresa Driscoll",
+        "datePublished": "2017/10",
+        "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51PeVt0WznL._AC_SR201,266_.jpg"
+    },
+    {
+        "bookId": 2,
+        "bookTitle": "The Designer",
+        "author": "Marius Gabriel",
+        "datePublished": "2017/10",
+        "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/41Au9g-VPfL._AC_SR201,266_.jpg"
+    },
+    {
+        "bookId": 3,
+        "bookTitle": "The Neon Lawyer",
+        "author": "Victor Methos",
+        "datePublished": "2014/11",
+        "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51PJOzLQTbL._AC_SR201,266_.jpg"
+    },
+    {
+        "bookId": 4,
+        "bookTitle": "From Sand and Ash",
+        "author": "Amy Harmon",
+        "datePublished": "2016/12",
+        "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51KRuC%2BmItL._AC_SR201,266_.jpg"
+    },
+    {
+        "bookId": 5,
+        "bookTitle": "Hate To Love You",
+        "author": "Tijan",
+        "datePublished": "2017/08",
+        "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51XuIfJdWhL._AC_SR201,266_.jpg"
+    }
+]
