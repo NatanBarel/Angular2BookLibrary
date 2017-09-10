@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 
-import { BookInterface } from './book';
+import { BookInterface } from '../book-model/book';
 
 @Injectable()
 export class BookService {
@@ -20,7 +20,7 @@ export class BookService {
             .catch(this.handleError);
     }
 
-     getBook(id: number): Observable<BookInterface> {
+    getBook(id: number): Observable<BookInterface> {
         return this.getBooks()
             .map((books: BookInterface[]) => books.find(b => b.bookId === id));
     }

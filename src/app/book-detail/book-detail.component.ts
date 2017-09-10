@@ -1,11 +1,11 @@
-import{Component, OnInit, OnDestroy} from'@angular/core';
-import{ActivatedRoute, Router} from '@angular/router';
-import { Subscription }       from 'rxjs/Subscription';
-import{BookInterface} from './book';
-import{BookService} from'./book.service';
+import{ Component, OnInit, OnDestroy } from'@angular/core';
+import{ ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
+import {BookInterface } from '../book-model/book';
+import{ BookService } from '../book-service/book.service';
 
 @Component({
-    templateUrl:'/templates/book-detail.component.html'
+    templateUrl:'/book-detail.component.html'
 })
 
 export class BookDetailComponent implements OnInit{
@@ -15,9 +15,8 @@ export class BookDetailComponent implements OnInit{
     private sub: Subscription;
 
     constructor(private _route:ActivatedRoute, 
-    private _router: Router,
-    private _bookService: BookService) {
-        
+       private _router: Router,
+       private _bookService: BookService) {  
     }
         
     ngOnInit(): void{

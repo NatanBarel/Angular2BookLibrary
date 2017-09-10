@@ -1,0 +1,113 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h1> {{pageTitle}}</h1>
+    </div>
+
+    <!--Filter the Boooks-->
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-2">Filter By:</div>
+            <div class="col-md-4">
+                <input type="text" [(ngModel)]='listFilter'>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3> Filter By: {{listFilter}}</h3>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table-striped table-bordered booktable" *ngIf=' books && books.length'>
+                <thead>
+                    <tr>
+                        <th>Book Image</th>
+                        <th>Book Title</th>
+                        <th>Author</th>
+                        <th>Date of Published</th>
+                        <th>Edit Book</th>
+                        <th>Delete Book</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let book of books | bookFilter:listFilter'>
+                        <td>
+                            <img [src]='book.imageUrl' [title]='book.bookTitle' [style.width.px]='imageWidth' [style.margin.px]='imageMargin'>
+                        </td>
+                        <td>
+                            <a [routerLink]="['/book', book.bookId]"> {{book.bookTitle | bookTitleFilter}}</a>
+                        </td>
+                        <td>{{book.author}}</td>
+                        <td>{{book.datePublished}}</td>
+                        <td>
+                            <button class='btn btn-primary ' (click)='openFormModal(book, editBookForm)'>
+                            <i class="glyphicon glyphicon-edit"></i>
+                            Edit    
+                            </button>
+                        </td>
+                        <td>
+                            <button class='btn btn-primary ' (click)='DeleteBookPrompt(deleteBookTemplate , book.bookId)'>
+                                <i class="glyphicon glyphicon-remove"></i>
+                                Delete  
+                            </button>
+                            <ng-template #deleteBookTemplate>
+                                <div class="modal-header">
+                                  <h4 class="modal-title pull-left">Delete Book - {{book.bookTitle | bookTitleFilter}}</h4>
+                                  <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefDeleteBookPrompt.hide()">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  Are you sure you want to delete the book : <b>{{book.bookTitle | bookTitleFilter}}?</b>
+                                  <br><br>
+                                  <button type="button" class="btn btn-danger" (click)="DeleteBook(book.bookId)">Delete
+                                    <i class="glyphicon glyphicon-trash"></i>    
+                                  </button>
+                                </div>
+                              </ng-template>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<ng-template #editBookForm>
+    <div class="modal-header">
+        <h3 class="modal-title pull-left">Book Edit</h3>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefEditBookForm.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="onSubmit(bookForm.value)" #bookForm="ngForm" [formGroup]="form">
+            <div class="form-group">
+                <label for="title">Book Title</label>
+                <input type="text" class="form-control" id="bookTitle" formControlName="bookTitle">
+                    <div *ngIf="form.controls.bookTitle.invalid" class="alert alert-danger">
+                        Book Title is required.
+                    </div>
+            </div>
+
+            <div class="form-group">
+                <label for="author">Author</label>
+                <input type="text" class="form-control" id="author" formControlName="author">
+                <div *ngIf="form.controls.author.invalid" class="alert alert-danger">
+                        Book Author is invalid.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" class="form-control" id="datePublished" formControlName="datePublished">
+                    <div *ngIf="form.controls.datePublished.invalid">
+                        Book Published Date is invalid.
+                    </div>
+            </div>
+
+            <button type="submit" class="btn btn-success" [disabled]="!bookForm.form.valid">Submit</button>
+
+        </form>
+    </div>
+</ng-template>

@@ -1,13 +1,13 @@
 <div class="panel panel-primary" *ngIf='book'>
     <div class="panel-heading" style='font-size:large'>
-        {{pageTitle + ': ' + book.bookTitle}}
+        {{pageTitle + ': ' + book.bookTitle | bookTitleFilter}}
     </div>
     <div class="panel-body">
         <div class="row">
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-3">Title: </div>
-                    <div class="col-md-6">{{book.bookTitle}}</div>
+                    <div class="col-md-6">{{book.bookTitle | bookTitleFilter}}</div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">Author: </div>
@@ -15,7 +15,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3">Published Date: </div>
-                    <div class="col-md-6">{{book.datePublished|date:'MM/yyyy'}}</div>
+                    <div class="col-md-6">{{book.datePublished}}</div>
                 </div>
             </div>
             <div class='col-md-6'>

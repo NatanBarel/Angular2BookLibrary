@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
-import{FormsModule} from '@angular/forms';
+import{FormsModule , ReactiveFormsModule } from '@angular/forms';
 import{CommonModule} from '@angular/common';
 import{RouterModule}from '@angular/router';
-import{BookDetailComponent} from'./book-detail.component';
-import{ BookListComponent } from './books-list.component';
-import{ BookFilterPipe } from './book-filter.pipe';
-import {BookTitleFilterPipe} from './book-title-filter.pipe'
-import{BookService} from './book.service';
+import{BookDetailComponent} from'./book-detail/book-detail.component';
+import{ BookListComponent } from './book-list/books-list.component';
+import{ BookFilterPipe } from './book-filters/book-filter.pipe';
+import {BookTitleFilterPipe} from './book-filters/book-title-filter.pipe'
+import{BookService} from './book-service/book.service';
 
 @NgModule({
     declarations:[
@@ -17,6 +17,7 @@ import{BookService} from './book.service';
     ],
     imports: [
         FormsModule,
+        ReactiveFormsModule,
         CommonModule,
         RouterModule.forChild([
                {path:'books', component: BookListComponent},

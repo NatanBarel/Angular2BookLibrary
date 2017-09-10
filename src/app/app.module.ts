@@ -8,7 +8,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BookModule } from './book.module';
 
 //homescrean
-import { Home } from './home.component';
+import { Home } from './home/home.component';
 
 //import FormsModule 
 import { FormsModule } from '@angular/forms';
